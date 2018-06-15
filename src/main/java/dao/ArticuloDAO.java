@@ -4,7 +4,7 @@ import model.Articulo;
 
 import java.util.List;
 
-public interface ArticuloDAO extends DAO<Articulo, Long>  {
+public interface ArticuloDAO extends DAOPA<Articulo, Long>  {
     @Override
     void insertar(Articulo articulo);
 

@@ -5,7 +5,7 @@ import java.util.List;
 
 import model.Etiqueta;
 
-public interface EtiquetaDAO extends DAO <Etiqueta, Long> {
+public interface EtiquetaDAO extends DAOPA <Etiqueta, Long> {
     @Override
     void insertar(Etiqueta etiqueta);
 

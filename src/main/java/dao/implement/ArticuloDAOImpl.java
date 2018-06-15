@@ -120,7 +120,7 @@ public class ArticuloDAOImpl  implements ArticuloDAO {
         try {
             ConexionDB conexionDB = new ConexionDB();
 
-            connection = ConexionDB.getConexion();
+            connection = conexionDB.getConexion();
             preparedStatement = connection.prepareStatement(DELETE);
             preparedStatement.setLong(1, articulo.getId());
             preparedStatement.setString(2, articulo.getTitulo());

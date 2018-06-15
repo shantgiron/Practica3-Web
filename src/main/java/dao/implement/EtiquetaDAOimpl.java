@@ -1,27 +1,25 @@
 package dao.implement;
 
-import model.Comentario;
-import database.ConexionDB;
-import dao.ComentarioDAO;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import dao.EtiquetaDAO;
+import database.ConexionDB;
+import model.Etiqueta;
 
-public class ComentarioDAOImpl implements ComentarioDAO{
-
+public class EtiquetaDAOimpl implements EtiquetaDAO {
     private static final Logger logger = LoggerFactory.getLogger(ArticuloDAOImpl.class);
 
-    private final String INSERT = "INSERT INTO COMENTARIO (ID,COMENTARIO, AUTOR_ID, ARTICULO_ID) VALUES (?,?,?,?)";
-    private final String DELETE = "DELETE FROM COMENTARIO WHERE ID = ? AND COMENTARIO = ? AND AUTOR_ID = ? AND ARTICULO_ID = ?";
-    private final String UPDATE = "UPDATE COMENTARIO SET COMENTARIO = ?, AUTOR_ID = ?, ARTICULO_ID = ? WHERE ID = ?";
-    private final String SELECT = "SELECT ID,COMENTARIO,AUTOR_ID,ARTICULO_ID FROM COMENTARIO";
-    private final String SELECT_POR_ID = "SELECT ID,COMENTARIO,AUTOR_ID,ARTICULO_ID FROM COMENTARIO WHERE ID = ?";
+    private final String INSERT = "INSERT INTO ETIQUETA (ID,ETIQUETA) VALUES (?,?)";
+    private final String DELETE = "DELETE FROM ETIQUETA WHERE ID = ? AND ETIQUETA = ?";
+    private final String UPDATE = "UPDATE ETIQUETA SET ETIQUETA = ? WHERE ID = ?";
+    private final String SELECT = "SELECT ID,ETIQUETA FROM ETIQUETA";
+    private final String SELECT_POR_ID = "SELECT ID,ETIQUETA FROM ETIQUETA WHERE ID = ?";
 
-    private final String INSERT_ARTICULO_COMENTARIOS = "INSERT INTO ARTICULO_COMENTARIOS (ID, ARTICULO_ID, COMENTARIO_ID) VALUES (?,?,?)";
+    private final String INSERT_ARTICULO_ETIQUETAS = "INSERT INTO ARTICULO_ETIQUETAS (ID, ARTICULO_ID, ETIQUETA_ID) VALUES (?,?,?)";
 
     private Connection connection = null;
     private PreparedStatement preparedStatement = null;
@@ -29,23 +27,21 @@ public class ComentarioDAOImpl implements ComentarioDAO{
     private Statement statement = null;
 
     @Override
-    public void insertar(Comentario comentario) {
+    public void insertar(Etiqueta etiqueta) {
         try {
             ConexionDB conexionDB = new ConexionDB();
 
             connection = conexionDB.getConexion();
             preparedStatement = connection.prepareStatement(INSERT);
-            preparedStatement.setLong(1, comentario.getId());
-            preparedStatement.setString(2, comentario.getComentario());
-            preparedStatement.setLong(3, comentario.getAutor().getId());
-            preparedStatement.setLong(4, comentario.getArticulo().getId());
+            preparedStatement.setLong(1, etiqueta.getId());
+            preparedStatement.setString(2, etiqueta.getEtiqueta());
 
             preparedStatement.executeUpdate();
 
             preparedStatement.close();
             connection.close();
         } catch (SQLException e) {
-            logger.debug("Error al hacer el insert en la clase comentario.", e);
+            logger.debug("Error al hacer el insert en la clase etiqueta.", e);
         } finally {
             if (preparedStatement != null) {
                 try {
@@ -65,23 +61,21 @@ public class ComentarioDAOImpl implements ComentarioDAO{
     }
 
     @Override
-    public void actualizar(Comentario comentario) {
+    public void actualizar(Etiqueta etiqueta) {
         try {
             ConexionDB conexionDB = new ConexionDB();
 
             connection = conexionDB.getConexion();
             preparedStatement = connection.prepareStatement(UPDATE);
-            preparedStatement.setString(1, comentario.getComentario());
-            preparedStatement.setLong(2, comentario.getAutor().getId());
-            preparedStatement.setLong(3, comentario.getArticulo().getId());
-            preparedStatement.setLong(4, comentario.getId());
+            preparedStatement.setString(1, etiqueta.getEtiqueta());
+            preparedStatement.setLong(2, etiqueta.getId());
 
             preparedStatement.executeUpdate();
 
             preparedStatement.close();
             connection.close();
         } catch (SQLException e) {
-            logger.debug("Error al hacer el update en la clase comentario.", e);
+            logger.debug("Error al hacer el update en la clase etiqueta.", e);
         } finally {
             if (preparedStatement != null) {
                 try {
@@ -101,23 +95,21 @@ public class ComentarioDAOImpl implements ComentarioDAO{
     }
 
     @Override
-    public void borrar(Comentario comentario) {
+    public void borrar(Etiqueta etiqueta) {
         try {
             ConexionDB conexionDB = new ConexionDB();
 
             connection = conexionDB.getConexion();
             preparedStatement = connection.prepareStatement(DELETE);
-            preparedStatement.setLong(1, comentario.getId());
-            preparedStatement.setString(2, comentario.getComentario());
-            preparedStatement.setLong(3, comentario.getAutor().getId());
-            preparedStatement.setLong(4, comentario.getArticulo().getId());
+            preparedStatement.setLong(1, etiqueta.getId());
+            preparedStatement.setString(2, etiqueta.getEtiqueta());
 
             preparedStatement.executeUpdate();
 
             preparedStatement.close();
             connection.close();
         } catch (SQLException e) {
-            logger.debug("Error al hacer el delete en la clase comentario.", e);
+            logger.debug("Error al hacer el delete en la clase etiqueta.", e);
         } finally {
             if (preparedStatement != null) {
                 try {
@@ -137,9 +129,9 @@ public class ComentarioDAOImpl implements ComentarioDAO{
     }
 
     @Override
-    public List<Comentario> encontrarTodos() {
-        List<Comentario> list = null;
-        Comentario comentario = null;
+    public List<Etiqueta> encontrarTodos() {
+        List<Etiqueta> list = null;
+        Etiqueta etiqueta = null;
 
         try {
             list = new ArrayList<>();
@@ -150,13 +142,11 @@ public class ComentarioDAOImpl implements ComentarioDAO{
             resultSet = statement.executeQuery(SELECT);
 
             while (resultSet.next()) {
-                comentario = new Comentario();
-                comentario.setId(resultSet.getLong("ID"));
-                comentario.setComentario(resultSet.getString("COMENTARIO"));
-                comentario.setAutor(new UsuarioDAOImpl().encontrarPorId(resultSet.getLong("AUTOR_ID")));
-                comentario.setArticulo(new ArticuloDAOImpl().encontrarPorId(resultSet.getLong("ARTICULO_ID")));
+                etiqueta = new Etiqueta();
+                etiqueta.setId(resultSet.getLong("ID"));
+                etiqueta.setEtiqueta(resultSet.getString("ETIQUETA"));
 
-                list.add(comentario);
+                list.add(etiqueta);
             }
 
             resultSet.close();
@@ -184,4 +174,60 @@ public class ComentarioDAOImpl implements ComentarioDAO{
         }
     }
 
+
+    @Override
+    public Etiqueta encontrarPorId(Long id) {
+        Etiqueta etiqueta = null;
+        try {
+            ConexionDB conexionDB = new ConexionDB();
+
+            connection = conexionDB.getConexion();
+            preparedStatement = connection.prepareStatement(SELECT_POR_ID);
+            preparedStatement.setLong(1, id);
+
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                etiqueta = new Etiqueta();
+
+                etiqueta.setId(resultSet.getLong("ID"));
+                etiqueta.setEtiqueta(resultSet.getString("ETIQUETA"));
+            }
+
+            preparedStatement.close();
+            connection.close();
+
+            return etiqueta;
+        } catch (SQLException e) {
+            logger.debug("Error al hacer el select.", e);
+            return null;
+        } finally {
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    logger.debug("Error al cerrar el prepared statement", e);
+                }
+            }
+
+            if (connection != null)
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    logger.debug("Error al cerrar la conexion de la bd", e);
+                }
+        }
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+

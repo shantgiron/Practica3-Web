@@ -8,8 +8,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexionDB {
-    public class DBConexion {
-        private final Logger logger = LoggerFactory.getLogger(DBConexion.class);
+        private final Logger logger = LoggerFactory.getLogger(ConexionDB.class);
 
         private final String DRIVER = "org.h2.Driver";
         private final String DB_NAME = "H2/BLOG";
@@ -40,4 +39,4 @@ public class ConexionDB {
 
 
 
-}
+

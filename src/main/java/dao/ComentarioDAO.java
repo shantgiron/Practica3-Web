@@ -4,7 +4,7 @@ import model.Comentario;
 
 import java.util.List;
 
-public interface ComentarioDAO  extends DAO<Comentario, Long>{
+public interface ComentarioDAO  extends DAOPA<Comentario, Long>{
     @Override
     void insertar(Comentario comentario);
 

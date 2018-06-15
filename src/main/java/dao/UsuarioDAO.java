@@ -2,7 +2,7 @@ package dao;
 
 import model.Usuario;
 
-public interface UsuarioDAO extends DAO<Usuario, Long>{
+public interface UsuarioDAO extends DAOPA<Usuario, Long>{
     @Override
     void insertar(Usuario usuario);
 
