@@ -1,12 +1,11 @@
 package service;
 
-import edu.pucmm.programacionweb2017.dao.DAOUsuario;
-import edu.pucmm.programacionweb2017.dao.impl.DAOUsuarioImpl;
-import edu.pucmm.programacionweb2017.modelo.Usuario;
-
+import dao.UsuarioDAO;
+import dao.implement.UsuarioDAOImpl;
+import model.Usuario;
 import java.util.List;
 
-public class UsuarioService  extends DAOUsuarioImpl implements DAOUsuario {
+public class UsuarioService  extends UsuarioDAOImpl implements UsuarioDAO {
     @Override
     public void insertar(Usuario usuario) {
         super.insertar(usuario);

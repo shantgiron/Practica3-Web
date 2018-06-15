@@ -1,12 +1,13 @@
 package service;
 
-import edu.pucmm.programacionweb2017.dao.DAOComentario;
-import edu.pucmm.programacionweb2017.dao.impl.DAOComentarioImpl;
-import edu.pucmm.programacionweb2017.modelo.Comentario;
+import dao.ComentarioDAO;
+import dao.implement.ComentarioDAOImpl;
+import model.Comentario;
+
 
 import java.util.List;
 
-public class ComentarioService  extends DAOComentarioImpl implements DAOComentario{
+public class ComentarioService  extends ComentarioDAOImpl implements ComentarioDAO{
 
     @Override
     public void insertar(Comentario comentario) {

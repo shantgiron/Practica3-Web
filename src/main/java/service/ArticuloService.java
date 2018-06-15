@@ -1,13 +1,13 @@
 package service;
 
 
+import dao.ArticuloDAO;
+import dao.implement.ArticuloDAOImpl;
+import model.Articulo;
+
 import java.util.List;
 
-/*import edu.pucmm.programacionweb2017.dao.DAOArticulo;
-import edu.pucmm.programacionweb2017.dao.impl.DAOArticuloImpl;
-import edu.pucmm.programacionweb2017.modelo.Articulo;*/
-
-public class ArticuloService  extends DAOArticuloImpl implements DAOArticulo {
+public class ArticuloService  extends ArticuloDAOImpl implements ArticuloDAO {
 
     public ArticuloService() {
         super();

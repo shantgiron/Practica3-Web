@@ -1,13 +1,13 @@
 package service;
 
 
-import edu.pucmm.programacionweb2017.dao.DAOEtiqueta;
-import edu.pucmm.programacionweb2017.dao.impl.DAOEtiquetaImpl;
-import edu.pucmm.programacionweb2017.modelo.Etiqueta;
+import dao.EtiquetaDAO;
+import dao.implement.EtiquetaDAOimpl;
+import model.Etiqueta;
 
 import java.util.List;
 
-public class EtiquetaService  extends DAOEtiquetaImpl implements DAOEtiqueta {
+public class EtiquetaService  extends EtiquetaDAOimpl implements EtiquetaDAO {
     @Override
     public void insertar(Etiqueta etiqueta) {
         super.insertar(etiqueta);
