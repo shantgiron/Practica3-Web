@@ -1,10 +1,12 @@
 package controller;
 
-import edu.pucmm.programacionweb2017.modelo.Articulo;
-import edu.pucmm.programacionweb2017.modelo.Comentario;
-import edu.pucmm.programacionweb2017.service.ArticuloService;
-import edu.pucmm.programacionweb2017.util.Path;
-import edu.pucmm.programacionweb2017.util.TemplateUtil;
+import model.Comentario;
+import model.Articulo;
+
+import service.ArticuloService;
+import until.TemplateUtil;
+import until.Path;
+
 import spark.QueryParamsMap;
 import spark.Route;
 
@@ -29,4 +31,4 @@ public class ArticuloController {
     };
 }
 
-}
+
