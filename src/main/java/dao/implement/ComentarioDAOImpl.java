@@ -11,7 +11,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ComentarioDAOImpl implements ComentarioDAO{
+public class ComentarioDAOImpl implements ComentarioDAO {
 
     private static final Logger logger = LoggerFactory.getLogger(ArticuloDAOImpl.class);
 
@@ -184,4 +184,9 @@ public class ComentarioDAOImpl implements ComentarioDAO{
         }
     }
 
+    @Override
+    public Comentario encontrarPorId(Long id) {
+        return null;
+    }
 }
+

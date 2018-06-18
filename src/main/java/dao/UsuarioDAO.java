@@ -2,6 +2,8 @@ package dao;
 
 import model.Usuario;
 
+import java.util.List;
+
 public interface UsuarioDAO extends DAOPA<Usuario, Long>{
     @Override
     void insertar(Usuario usuario);

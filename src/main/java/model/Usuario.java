@@ -1,13 +1,16 @@
 package model;
 
+
 import java.io.Serializable;
 
 public class Usuario implements Serializable {
     private String username;
     private String nombre;
+    private long id;
     private String password;
-    private administrator boolean;
-    private autor boolean;
+    private  boolean administrator;
+    private boolean autor ;
+
 
    public Usuario (){
 

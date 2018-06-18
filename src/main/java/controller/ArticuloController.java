@@ -4,8 +4,8 @@ import model.Comentario;
 import model.Articulo;
 
 import service.ArticuloService;
-import until.TemplateUtil;
-import until.Path;
+import util.TemplateUtil;
+import util.Path;
 
 import spark.QueryParamsMap;
 import spark.Route;
@@ -24,7 +24,7 @@ public class ArticuloController {
         Articulo articulo = new ArticuloService().encontrarPorId(id);
         List<Comentario> list = articulo.getListaComentarios();
 
-        parametros.put("articulo", articulo);
+        parametros.put("templates/articulo", articulo);
         parametros.put("comentarios", list);
 
         return TemplateUtil.renderThymeleaf(parametros, Path.Template.VER_ARTICULO);
