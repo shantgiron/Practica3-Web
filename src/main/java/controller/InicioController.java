@@ -27,6 +27,7 @@ public class InicioController {
 
         String valor = "";
 
-        return TemplateUtil.renderThymeleaf(model, Path.Template.INICIO);
+        return null;
+        //return TemplateUtil.renderThymeleaf(model, Path.Template.INICIO);
     };
 }

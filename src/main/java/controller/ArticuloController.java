@@ -27,6 +27,7 @@ public class ArticuloController {
         parametros.put("templates/articulo", articulo);
         parametros.put("comentarios", list);
 
+       // return null;
         return TemplateUtil.renderThymeleaf(parametros, Path.Template.VER_ARTICULO);
     };
 }

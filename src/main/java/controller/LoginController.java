@@ -15,9 +15,16 @@ import util.TemplateUtil;
 
 
 public class LoginController {
+    public static Route paginaIndex = (Request request, Response response) -> {
+        Map<String, Object> model = new HashMap<>();
+
+        return TemplateUtil.renderThymeleaf(model, Path.Template.INDEX);
+    };
+
     public static Route paginaLogin = (Request request, Response response) -> {
         Map<String, Object> model = new HashMap<>();
 
+       // return null;
         return TemplateUtil.renderThymeleaf(model, Path.Template.LOGIN);
     };
 

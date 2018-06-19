@@ -11,6 +11,7 @@ public class NoEncontradoController {
         public static Route noEncontrado = (request, response) -> {
             Map<String, Object> parametros = new HashMap<>();
             response.status(404);
+           // return null;
             return TemplateUtil.renderThymeleaf(parametros, Path.Template.NO_ENCONTRADO);
         };
     }
