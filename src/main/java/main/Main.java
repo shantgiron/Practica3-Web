@@ -1,11 +1,13 @@
 package main;
 
+import controller.CrearUsuarioController;
 import controller.InicioController;
 import controller.LoginController;
 import spark.Spark;
 import util.Path;
 
 import static spark.Spark.get;
+import static spark.Spark.post;
 import static spark.Spark.staticFiles;
 
 public class Main {
@@ -19,5 +21,10 @@ public class Main {
 
         get(Path.Web.INDEX, InicioController.paginaInicio);
         get(Path.Web.LOGIN, LoginController.paginaLogin);
+        post(Path.Web.LOGIN, LoginController.login);
+        get(Path.Web.CREAR_USUARIO, CrearUsuarioController.paginaCrearUsuario);
+        post(Path.Web.CREAR_USUARIO, CrearUsuarioController.crearUsuario);
+
+
     }
 }

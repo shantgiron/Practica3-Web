@@ -17,12 +17,12 @@ public class Path {
     //al no especificar la extension del archivo, thymeleaf sabe que es HTML
     public static class Template {
         public static final String INDEX = "/index";
-        public static final String INICIO = "/templates/Inicio";
-        public static final String ARTICULO = "/templates/CrearArticulo";
-        public static final String LOGIN = "/templates/login/Login";
-        public static final String NO_ENCONTRADO = "/templates/Notfound";
-        public static final String VER_ARTICULO = "/templates/VerArticulo";
-        public static final String CREAR_USUARIO = "/templates/CrearUsuario";
+        public static final String INICIO = "/Inicio";
+        public static final String ARTICULO = "/CrearArticulo";
+        public static final String LOGIN = "/login/Login";
+        public static final String NO_ENCONTRADO = "/Notfound";
+        public static final String VER_ARTICULO = "/VerArticulo";
+        public static final String CREAR_USUARIO = "/CrearUsuario";
 
     }
 }

@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link href="../../bootstrap/css/bootstrap.min.css"
-          th:href="@{bootstrap/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
-    <link href="../../css/main.css" th:href="@{css/main.css}" rel="stylesheet" media="screen"/>
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+    <!--<!link href="../css/main.css" th:href="@{css/main.css}" rel="stylesheet" media="screen"/>-->
 </head>
 <body>
 <!-- Top content -->
@@ -15,11 +14,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2 text">
-                    <h1><strong>Bienvenidos a </strong>BLOG!</h1>
+                    <h1><strong>Bienvenido a tu </strong>BLOG!</h1>
                     <div class="description">
-                        <p>
-                            Esta es una pagina para escribir articulos y a su vez comentarlos. Disfruten!
-                        </p>
                     </div>
                 </div>
             </div>
@@ -35,19 +31,19 @@
                         </div>
                     </div>
                     <div class="form-bottom">
-                        <form role="form" action="" method="post" class="login-form">
+                        <form role="form" action="/login" method="post" class="login-form">
                             <div class="form-group">
                                 <label class="sr-only" for="usuario">Usuario: </label>
-                                <input type="text" name="usuario" placeholder="Digite cuenta de usuario"
+                                <input type="text" name="usuario" th:value="${username}" placeholder="Digite cuenta de usuario"
                                        class="form-username form-control" id="usuario">
                             </div>
                             <div class="form-group">
                                 <label class="sr-only" for="password">Contrasena: </label>
-                                <input type="password" name="password" placeholder="Digite contrasena"
+                                <input type="password" name="password" th:value="${password}" placeholder="Digite contrasena"
                                        class="form-password form-control" id="password">
                             </div>
                             <button type="submit" class="btn">Iniciar sesion!</button>
-                            No tiene cuenta?<a th:href="@{usuario/crearUsuario}"> Registrese!</a>
+                            No tiene cuenta?<a th:href="@{usuario/crearUsuario}"> Registrarse!</a>
                         </form>
                     </div>
                 </div>
@@ -57,7 +53,7 @@
     <div id="body"></div>
     <div id="footer">
         <div class="container">
-            <p>Pucmm, Programacion Web 2017 © Todos los derechos reservados</p>
+
         </div>
     </div>
 </div>
@@ -80,10 +76,10 @@
 </script>
 
 <!-- Bootstrap core JavaScript -->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Custom scripts for this template -->
-<script src="js/clean-blog.min.js"></script>
+<script src="../js/clean-blog.min.js"></script>
 
 </html>
