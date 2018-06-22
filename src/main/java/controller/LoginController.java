@@ -41,8 +41,8 @@ public class LoginController {
     public static Route login = (request, response) -> {
         QueryParamsMap map = request.queryMap();
 
-        response.cookie("username", map.get("usuario").value(), 3600);
-        response.cookie("password", map.get("password").value(), 3600);
+        response.cookie("username", map.get("usuario").value(), 604800);
+        response.cookie("password", map.get("password").value(), 604800);
 
         UsuarioService usuarioService = new UsuarioService();
         Usuario usuario = usuarioService.encontrarPorCuentaUsuario(map.get("usuario").value());

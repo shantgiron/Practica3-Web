@@ -26,7 +26,7 @@ public class CrearUsuarioController {
     public static Route paginaCrearUsuario = (Request request, Response response) -> {
         Map<String, Object> model = new HashMap<>();
 
-       // return null;
+
        return TemplateUtil.renderThymeleaf(model, Path.Template.CREAR_USUARIO);
     };
 

@@ -7,6 +7,8 @@ import java.util.Map;
 
 import service.ArticuloService;
 import model.Articulo;
+import spark.ModelAndView;
+import spark.template.thymeleaf.ThymeleafTemplateEngine;
 import util.Path;
 import util.TemplateUtil;
 
@@ -27,7 +29,6 @@ public class InicioController {
 
         String valor = "";
 
-        return null;
-        //return TemplateUtil.renderThymeleaf(model, Path.Template.INICIO);
+        return new ThymeleafTemplateEngine().render(new ModelAndView(model, Path.Template.INICIO));
     };
 }

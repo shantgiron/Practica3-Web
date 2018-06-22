@@ -1,8 +1,8 @@
 package main;
 
-import controller.CrearUsuarioController;
-import controller.InicioController;
-import controller.LoginController;
+import controller.*;
+import dao.implement.UsuarioDAOImpl;
+import model.Usuario;
 import spark.Spark;
 import util.Path;
 
@@ -19,12 +19,24 @@ public class Main {
             return null;
         });
 
-        get(Path.Web.INDEX, InicioController.paginaInicio);
+
+        Usuario usuario = new Usuario();
+        usuario.setUsername("admin");
+        usuario.setPassword("admin");
+        usuario.setAdministrator(true);
+        usuario.setNombre("Shant");
+        usuario.setAutor(true);
+
+        new UsuarioDAOImpl().insertar(usuario);
+
+        get(Path.Web.INICIO, InicioController.paginaInicio);
         get(Path.Web.LOGIN, LoginController.paginaLogin);
         post(Path.Web.LOGIN, LoginController.login);
         get(Path.Web.CREAR_USUARIO, CrearUsuarioController.paginaCrearUsuario);
         post(Path.Web.CREAR_USUARIO, CrearUsuarioController.crearUsuario);
-
+        get (Path.Web.NO_ENCONTRADO, NoEncontradoController.noEncontrado);
+        get(Path.Web.VER_ARTICULO, ArticuloController.ver);
+       // post(Path.Web.ARTICULOS, ArticuloController.);
 
     }
 }
