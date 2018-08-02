@@ -1,0 +1,47 @@
+var express = require('express');
+var router = express.Router();
+
+var unirest = require('unirest');
+
+var soap = require('soap');
+var url = 'http://localhost:7777/ws/PublicacionWebService?wsdl';
+
+var soapHeader = ''//xml string for header
+
+
+/***************** Las rutas de REST ************************************/
+
+/* Listado estudiantes. */
+router.get('/rest/publicaciones/', function(req, res, next) {
+    unirest.get('http://localhost:4567/rest/publicaciones/')
+        .headers({ 'Accept': 'application/json' })
+            .end(function (resp) {
+               res.json(resp.body);
+            });
+});
+
+/* Publicacion por correo */
+router.get('/rest/publicaciones/:correo', function(req, res, next) {
+    unirest.get('http://localhost:4567/rest/publicaciones/' + req.params.correo)
+        .headers({ 'Accept': 'application/json' })
+            .end(function (resp) {
+                res.json(resp.body);
+            });
+});
+
+/* Crea una publicacion */
+router.get('/rest/publicaciones/crear', function(req, res, next) {
+
+    let publicacion = {
+        descripcion: "Hola, soy una prueba de REST",
+        fecha: "02/08/2018",
+        
+    };
+
+    unirest.post('http://localhost:4567/rest/publicaciones/')
+        .headers({'Accept': 'application/json', 'Content-Type': 'application/json'})
+        .send( JSON.stringify(publicacion) )
+        .end(function (resp) {
+            res.json(resp.body);
+        });
+});
